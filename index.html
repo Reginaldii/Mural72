@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MURAL.72 — Reginald L. Carter II</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --off-black: #111111;
+    --card-bg: #141414;
+    --border: #252525;
+    --white: #f0ede8;
+    --accent: #c8a96e;
+    --accent2: #e05c3a;
+    --muted: #999490;
+    --tag-bg: #1a1a1a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+display: flex; justify-content: space-between; align-items: center;
+padding: 24px 48px;
+background: linear-gradient(to bottom, rgba(8,8,8,0.97) 0%, transparent 100%);
+}
+.nav-logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 22px; letter-spacing: 0.15em; color: var(–accent); text-decoration: none; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(–muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(–white); }
+
+#cover {
+min-height: 100vh; display: flex; flex-direction: column;
+justify-content: flex-end; padding: 0 48px 80px;
+position: relative; overflow: hidden; background: var(–black);
+}
+.cover-bg {
+position: absolute; inset: 0;
+background: radial-gradient(ellipse 60% 60% at 75% 40%, rgba(200,169,110,0.08) 0%, transparent 70%),
+radial-gradient(ellipse 40% 50% at 20% 80%, rgba(224,92,58,0.06) 0%, transparent 60%);
+}
+.cover-year { position: absolute; top: 50%; right: 48px; font-family: ‘Bebas Neue’, sans-serif; font-size: 200px; color: rgba(255,255,255,0.025); letter-spacing: -0.05em; line-height: 1; pointer-events: none; }
+.cover-rule { width: 60px; height: 2px; background: var(–accent); margin-bottom: 28px; }
+.cover-eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(–accent); margin-bottom: 20px; }
+.cover-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(72px, 12vw, 160px); line-height: 0.9; letter-spacing: 0.02em; color: var(–white); margin-bottom: 20px; }
+.cover-title span { color: var(–accent); }
+.cover-name { font-size: 14px; letter-spacing: 0.25em; text-transform: uppercase; color: var(–muted); margin-bottom: 28px; }
+.cover-sub { font-size: 13px; letter-spacing: 0.1em; color: var(–muted); text-transform: uppercase; margin-bottom: 36px; line-height: 1.8; }
+.cover-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 56px; }
+.cover-tag { border: 1px solid var(–border); padding: 6px 16px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(–muted); }
+.cover-scroll { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(–muted); display: flex; align-items: center; gap: 16px; }
+.cover-scroll::before { content: ‘’; display: block; width: 40px; height: 1px; background: var(–muted); }
+
+.section-header { padding: 90px 48px 56px; border-top: 1px solid var(–border); background: var(–black); }
+.section-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(–accent); margin-bottom: 14px; }
+.section-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(42px, 6vw, 80px); letter-spacing: 0.04em; color: var(–white); }
+
+.project-hero { position: relative; height: 80vh; overflow: hidden; margin-bottom: 2px; }
+.project-hero img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); transition: transform 1s ease, filter 0.6s ease; }
+.project-hero:hover img { transform: scale(1.04); filter: brightness(0.75); }
+.hero-badge { position: absolute; top: 40px; left: 48px; background: var(–accent2); color: #fff; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; padding: 6px 18px; font-weight: 500; }
+.hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 80px 48px 52px; background: linear-gradient(to top, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.5) 60%, transparent 100%); }
+.hero-client { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(–accent); margin-bottom: 12px; }
+.hero-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(48px, 8vw, 100px); letter-spacing: 0.03em; line-height: 0.95; color: var(–white); margin-bottom: 20px; }
+.hero-desc { font-size: 15px; line-height: 1.7; color: var(–muted); max-width: 580px; margin-bottom: 28px; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.htag { border: 1px solid rgba(200,169,110,0.4); padding: 5px 14px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(–accent); }
+
+.projects { background: var(–black); padding: 0 48px 80px; }
+
+.project-full { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; min-height: 68vh; }
+.project-full.reverse { direction: rtl; }
+.project-full.reverse > * { direction: ltr; }
+
+.project-img { overflow: hidden; position: relative; background: var(–card-bg); }
+.project-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); filter: brightness(0.88); }
+.project-img:hover img { transform: scale(1.04); filter: brightness(1); }
+
+.project-info { background: var(–card-bg); padding: 56px 52px; display: flex; flex-direction: column; justify-content: center; border: 1px solid var(–border); }
+.project-number { font-family: ‘Bebas Neue’, sans-serif; font-size: 12px; letter-spacing: 0.2em; color: var(–accent); margin-bottom: 28px; }
+.accent-line { width: 40px; height: 2px; background: var(–accent2); margin-bottom: 28px; }
+.project-type { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(–muted); margin-bottom: 12px; }
+.project-name { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(32px, 4vw, 52px); letter-spacing: 0.04em; line-height: 1.05; color: var(–white); margin-bottom: 20px; }
+.project-desc { font-size: 14px; line-height: 1.78; color: var(–muted); margin-bottom: 32px; max-width: 360px; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.ptag { background: var(–tag-bg); border: 1px solid var(–border); padding: 5px 14px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(–muted); }
+
+.project-wide { margin-bottom: 2px; position: relative; height: 60vh; overflow: hidden; }
+.project-wide img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; filter: brightness(0.7); }
+.project-wide:hover img { transform: scale(1.03); filter: brightness(0.85); }
+.project-wide-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px 48px 44px; background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, transparent 100%); display: flex; justify-content: space-between; align-items: flex-end; }
+.project-wide-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(36px, 5vw, 64px); letter-spacing: 0.04em; color: var(–white); }
+.project-wide-meta { text-align: right; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(–muted); line-height: 2; }
+
+.project-triptych { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 2px; height: 48vh; }
+.project-triptych .project-img { min-height: unset; }
+.project-triptych .project-img:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+#about { padding: 90px 48px; border-top: 1px solid var(–border); background: var(–off-black); display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+.about-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(–accent); margin-bottom: 16px; }
+.about-name { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(44px, 6vw, 88px); letter-spacing: 0.03em; line-height: 0.92; color: var(–white); margin-bottom: 12px; }
+.about-brand { font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(–accent); margin-bottom: 40px; }
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(–border); }
+.service-item { padding: 18px 22px; border-bottom: 1px solid var(–border); border-right: 1px solid var(–border); }
+.service-item:nth-child(even) { border-right: none; }
+.service-item:nth-last-child(-n+2) { border-bottom: none; }
+.service-num { font-size: 10px; color: var(–accent); letter-spacing: 0.2em; margin-bottom: 6px; }
+.service-name { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(–white); font-weight: 500; }
+.about-bio { font-size: 15px; line-height: 1.85; color: var(–muted); margin-bottom: 32px; }
+.about-bio strong { color: var(–white); font-weight: 500; }
+.about-quote { font-family: ‘Playfair Display’, serif; font-style: italic; font-size: 21px; line-height: 1.55; color: var(–white); border-left: 2px solid var(–accent); padding-left: 28px; margin-bottom: 40px; }
+.client-badge { display: inline-flex; align-items: center; gap: 12px; border: 1px solid var(–border); padding: 14px 24px; background: var(–tag-bg); }
+.client-badge-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(–accent); }
+.client-badge-name { font-size: 14px; letter-spacing: 0.08em; color: var(–white); font-weight: 500; }
+
+#contact { padding: 90px 48px 80px; border-top: 1px solid var(–border); background: var(–black); }
+.contact-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; margin-top: 56px; }
+.contact-cta { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(44px, 6vw, 80px); letter-spacing: 0.03em; line-height: 0.95; color: var(–white); }
+.contact-cta span { color: var(–accent); }
+.contact-body { font-size: 15px; line-height: 1.8; color: var(–muted); margin-top: 24px; max-width: 460px; }
+.contact-items { display: flex; flex-direction: column; }
+.contact-item { display: flex; flex-direction: column; padding: 26px 0; border-bottom: 1px solid var(–border); }
+.contact-item:first-child { border-top: 1px solid var(–border); }
+.contact-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(–accent); margin-bottom: 8px; }
+.contact-value { font-size: 16px; color: var(–white); font-weight: 400; letter-spacing: 0.03em; }
+.contact-value a { color: var(–white); text-decoration: none; transition: color 0.2s; }
+.contact-value a:hover { color: var(–accent); }
+.contact-note { font-size: 12px; color: var(–muted); margin-top: 4px; }
+
+footer { padding: 28px 48px; border-top: 1px solid var(–border); background: var(–black); display: flex; justify-content: space-between; align-items: center; }
+.footer-logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 18px; letter-spacing: 0.15em; color: var(–accent); }
+.footer-copy { font-size: 11px; letter-spacing: 0.12em; color: var(–muted); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.cover-rule    { animation: fadeUp 0.7s ease 0.0s both; }
+.cover-eyebrow { animation: fadeUp 0.7s ease 0.1s both; }
+.cover-title   { animation: fadeUp 0.8s ease 0.2s both; }
+.cover-name    { animation: fadeUp 0.7s ease 0.35s both; }
+.cover-sub     { animation: fadeUp 0.7s ease 0.45s both; }
+.cover-tags    { animation: fadeUp 0.7s ease 0.55s both; }
+.cover-scroll  { animation: fadeUp 0.7s ease 0.65s both; }
+
+@media (max-width: 860px) {
+nav { padding: 20px 24px; }
+.nav-links { display: none; }
+#cover, .projects, .section-header, #about, #contact { padding-left: 24px; padding-right: 24px; }
+.cover-year { display: none; }
+.project-full { grid-template-columns: 1fr; min-height: unset; }
+.project-full.reverse { direction: ltr; }
+.project-img { min-height: 260px; }
+.project-info { padding: 32px 28px; }
+.project-triptych { grid-template-columns: 1fr 1fr; height: auto; }
+.project-triptych .project-img { height: 190px; }
+.project-triptych .project-img:last-child:nth-child(odd) { grid-column: 1 / -1; height: 190px; }
+.project-wide { height: 56vw; min-height: 220px; }
+.project-wide-overlay { padding: 20px 24px; }
+.project-hero { height: 85vh; }
+.hero-overlay { padding: 20px 20px 24px; }
+.hero-title { font-size: 38px !important; margin-bottom: 10px; }
+.hero-desc { font-size: 13px !important; line-height: 1.6; margin-bottom: 14px; }
+.hero-badge { top: 20px; left: 24px; }
+#about { grid-template-columns: 1fr; gap: 48px; }
+.contact-grid { grid-template-columns: 1fr; gap: 40px; }
+footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <a href="#cover" class="nav-logo">MURAL.72</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">Studio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-year">72</div>
+  <div class="cover-rule"></div>
+  <div class="cover-eyebrow">Creative Studio &amp; Mural Art</div>
+  <h1 class="cover-title">MURAL<span>.</span>72</h1>
+  <div class="cover-name">Reginald L. Carter II</div>
+  <p class="cover-sub">Murals &nbsp;·&nbsp; Custom Installations &nbsp;·&nbsp; Brand Environments &nbsp;·&nbsp; Commissions</p>
+  <div class="cover-tags">
+    <span class="cover-tag">Murals</span>
+    <span class="cover-tag">Graffiti Art</span>
+    <span class="cover-tag">Custom Commissions</span>
+    <span class="cover-tag">Brand Environments</span>
+    <span class="cover-tag">Surface &amp; Wood Painting</span>
+    <span class="cover-tag">Pop Art</span>
+  </div>
+  <div class="cover-scroll">Scroll to explore work</div>
+</section>
+
+<div id="work" class="section-header">
+  <div class="section-label">Selected Work</div>
+  <h2 class="section-title">Projects</h2>
+</div>
+
+<!-- HERO: ST LUKES -->
+
+<div style="background: var(--black);">
+  <div class="project-hero">
+    <img src="https://i.imgur.com/nOQXOQh.jpeg" alt="St. Luke's Enchanted Forest">
+    <div class="hero-badge">Featured Commission</div>
+    <div class="hero-overlay">
+      <div class="hero-client">Client: St. Luke's University Health Network</div>
+      <h2 class="hero-title">Enchanted<br>Forest</h2>
+      <p class="hero-desc">A multi-piece painted wood installation created for St. Luke's University Health Network — the artist's most significant institutional commission to date. Hand-painted woodland scenes across raw tree slab surfaces, installed as an immersive healing environment.</p>
+      <div class="hero-tags">
+        <span class="htag">Institutional Commission</span>
+        <span class="htag">Multi-Piece Installation</span>
+        <span class="htag">Wood Surface Painting</span>
+        <span class="htag">St. Luke's Health Network</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="background: var(--black); margin-top: 2px;">
+  <div class="project-triptych" style="height: 52vh;">
+    <div class="project-img"><img src="https://i.imgur.com/wWUQPqM.jpeg" alt="Forest Spirits I"></div>
+    <div class="project-img"><img src="https://i.imgur.com/PuCsDda.jpeg" alt="Forest Spirits II"></div>
+    <div class="project-img"><img src="https://i.imgur.com/nOQXOQh.jpeg" alt="Forest Spirits III"></div>
+  </div>
+</div>
+
+<div class="projects">
+
+  <!-- 10TH PLANET -->
+
+  <div class="project-wide">
+    <img src="https://i.imgur.com/YGEFeB3.jpeg" alt="10th Planet Nazareth Mural">
+    <div class="project-wide-overlay">
+      <div>
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Commissioned Mural · Gym Branding</div>
+        <div class="project-wide-title">10th Planet Nazareth</div>
+      </div>
+      <div class="project-wide-meta">Wall Mural<br>Acrylic on Board<br>Nazareth, PA</div>
+    </div>
+  </div>
+
+  <div class="project-full">
+    <div class="project-img"><img src="https://i.imgur.com/RIJX4zb.jpeg" alt="10th Planet Detail"></div>
+    <div class="project-info">
+      <div class="project-number">02 / 06</div>
+      <div class="accent-line"></div>
+      <div class="project-type">Gym · Sports Branding · Mural</div>
+      <h3 class="project-name">10th Planet<br>Nazareth</h3>
+      <p class="project-desc">Full wall mural commission for 10th Planet Jiu-Jitsu Nazareth. Bold graffiti-lettering identity combined with astronaut characters in dynamic grappling poses — merging the gym's space-themed brand with raw street art energy.</p>
+      <div class="project-tags">
+        <span class="ptag">Mural</span><span class="ptag">Gym Branding</span>
+        <span class="ptag">Graffiti Lettering</span><span class="ptag">Character Design</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLAMINGO -->
+
+  <div class="project-full reverse">
+    <div class="project-img"><img src="https://i.imgur.com/5FTJcnS.jpeg" alt="Flamingo Tropical Mural"></div>
+    <div class="project-info">
+      <div class="project-number">03 / 06</div>
+      <div class="accent-line"></div>
+      <div class="project-type">Interior Mural · Botanical</div>
+      <h3 class="project-name">Flamingo<br>Tropical</h3>
+      <p class="project-desc">Full-scale interior wall mural featuring hand-painted flamingos in a lush tropical botanical environment. Flat graphic style with rich layered color — ideal for hospitality, salon, retail, and lifestyle brand spaces.</p>
+      <div class="project-tags">
+        <span class="ptag">Interior Mural</span><span class="ptag">Botanical</span>
+        <span class="ptag">Commercial Space</span><span class="ptag">Acrylic</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRIM & PURR -->
+
+  <div class="project-full">
+    <div class="project-img" style="max-height:700px;">
+      <img src="https://i.imgur.com/7Nj8Jau.jpeg" alt="Grim and Purr" style="object-position:center top;">
+    </div>
+    <div class="project-info">
+      <div class="project-number">04 / 06</div>
+      <div class="accent-line"></div>
+      <div class="project-type">Custom Commission · Panel Painting</div>
+      <h3 class="project-name">Grim<br>&amp; Purr</h3>
+      <p class="project-desc">Original panel painting for a cat café concept. Gothic character illustration meets warm pop sensibility — a skull-faced figure cradling a black cat against a deep twilight backdrop. A signature piece that defines a space's entire visual identity.</p>
+      <div class="project-tags">
+        <span class="ptag">Commission</span><span class="ptag">Panel Painting</span>
+        <span class="ptag">Character Art</span><span class="ptag">Brand Identity</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- I WILL WIN -->
+
+  <div class="project-wide">
+    <img src="https://i.imgur.com/mh7oo4M.jpeg" alt="I Will Win Mural">
+    <div class="project-wide-overlay">
+      <div>
+        <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Interior Mural · Motivational</div>
+        <div class="project-wide-title">I Will Win</div>
+      </div>
+      <div class="project-wide-meta">Acrylic on Wall<br>Full Room Mural</div>
+    </div>
+  </div>
+
+  <div class="project-full reverse">
+    <div class="project-img"><img src="https://i.imgur.com/mh7oo4M.jpeg" alt="I Will Win Detail"></div>
+    <div class="project-info">
+      <div class="project-number">05 / 06</div>
+      <div class="accent-line"></div>
+      <div class="project-type">Interior Mural · Environment Design</div>
+      <h3 class="project-name">I Will<br>Win</h3>
+      <p class="project-desc">Full room wall mural — layered mountain landscape in a cinematic purple-blue palette with floating clouds, pine silhouettes, and hand-rendered script affirmation. Built for gyms, training studios, wellness spaces, and executive environments.</p>
+      <div class="project-tags">
+        <span class="ptag">Room Mural</span><span class="ptag">Environment Design</span>
+        <span class="ptag">Motivational</span><span class="ptag">Fitness / Wellness</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- THIS STOLE MY LIFE -->
+
+  <div class="project-full">
+    <div class="project-img" style="max-height:700px;">
+      <img src="https://i.imgur.com/3X88KQi.jpeg" alt="This Stole My Life" style="object-position:center top;">
+    </div>
+    <div class="project-info">
+      <div class="project-number">06 / 06</div>
+      <div class="accent-line"></div>
+      <div class="project-type">Fine Art · Pop Horror · Canvas</div>
+      <h3 class="project-name">This Stole<br>My Life</h3>
+      <p class="project-desc">Large-format canvas painting in a vintage pop-horror comic style. A bold commentary piece — a woman clutching a money-chain dress surrounded by zombie figures, tombstones marked "Love" and "Hope &amp; Dreams." Gallery, venue, and editorial ready.</p>
+      <div class="project-tags">
+        <span class="ptag">Fine Art</span><span class="ptag">Pop Horror</span>
+        <span class="ptag">Social Commentary</span><span class="ptag">Gallery</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ABOUT -->
+
+<section id="about">
+  <div>
+    <div class="about-label">The Artist</div>
+    <h2 class="about-name">Reginald<br>L. Carter<br>II</h2>
+    <div class="about-brand">MURAL.72</div>
+    <div class="services-grid">
+      <div class="service-item"><div class="service-num">01</div><div class="service-name">Murals</div></div>
+      <div class="service-item"><div class="service-num">02</div><div class="service-name">Custom Art</div></div>
+      <div class="service-item"><div class="service-num">03</div><div class="service-name">Gym Branding</div></div>
+      <div class="service-item"><div class="service-num">04</div><div class="service-name">Installations</div></div>
+      <div class="service-item"><div class="service-num">05</div><div class="service-name">Event Visuals</div></div>
+      <div class="service-item"><div class="service-num">06</div><div class="service-name">Brand Environments</div></div>
+    </div>
+  </div>
+  <div>
+    <p class="about-bio"><strong>Reginald L. Carter II</strong> is the artist and founder behind MURAL.72 — a multidisciplinary creative studio specializing in large-scale murals, custom painted installations, and branded visual environments. Based in the Lehigh Valley, PA.</p>
+    <p class="about-bio">From institutional commissions like the <strong>St. Luke's University Health Network Enchanted Forest</strong> to gym identity murals, botanical interiors, and fine art canvases — every project is original, hand-crafted, and built to define a space.</p>
+    <p class="about-bio">The studio works with <strong>gyms, restaurants, event venues, music artists, nightlife brands, healthcare systems, and sponsors</strong> to create environments people remember.</p>
+    <blockquote class="about-quote">"The best spaces don't just hold events — they become the event."</blockquote>
+    <div class="client-badge">
+      <div>
+        <div class="client-badge-label">Featured Client</div>
+        <div class="client-badge-name">St. Luke's University Health Network</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Commission<br>a Project</h2>
+  <div class="contact-grid">
+    <div>
+      <h3 class="contact-cta">Let's Build<br>Something<br><span>Unforgettable.</span></h3>
+      <p class="contact-body">Available for commercial murals, branded environments, event installations, and custom commissions. Serving the Lehigh Valley, PA and beyond — traveling for the right project.</p>
+    </div>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="contact-label">Artist</div>
+        <div class="contact-value">Reginald L. Carter II</div>
+        <div class="contact-note">MURAL.72 · Lehigh Valley, Pennsylvania</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Phone</div>
+        <div class="contact-value"><a href="tel:4845451147">(484) 545-1147</a></div>
+        <div class="contact-note">Call or text</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:Mural72job@gmail.com">Mural72job@gmail.com</a></div>
+        <div class="contact-note">All inquiries reviewed personally</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Instagram</div>
+        <div class="contact-value"><a href="https://www.instagram.com/mural.72?igsh=a2I1NHRzaWQ2YjRt&utm_source=qr" target="_blank">@mural.72</a></div>
+        <div class="contact-note">See latest work</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Serving</div>
+        <div class="contact-value">Lehigh Valley &amp; Beyond</div>
+        <div class="contact-note">Travel available for large-scale projects</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">MURAL.72</div>
+  <div class="footer-copy">© 2024 Reginald L. Carter II · MURAL.72 · All Rights Reserved</div>
+</footer>
+
+</body>
+</html>
